@@ -31,6 +31,16 @@ import Z from "./Assets/sound/Z.wav";
 export default class MorsePlayer extends Component {
   constructor(props) {
     super(props);
+
+    this.playAudio = this.playAudio.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      words: ""
+    };
+  }
+
+  componentDidMount() {
     this.ASound = new Audio(A);
     this.BSound = new Audio(B);
     this.CSound = new Audio(C);
@@ -57,13 +67,6 @@ export default class MorsePlayer extends Component {
     this.XSound = new Audio(X);
     this.YSound = new Audio(Y);
     this.ZSound = new Audio(Z);
-
-    this.playAudio = this.playAudio.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
-    this.state = {
-      words: ""
-    };
   }
 
   playAudio(evt) {
