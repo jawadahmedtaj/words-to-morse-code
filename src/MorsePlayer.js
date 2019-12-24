@@ -31,42 +31,40 @@ import Z from "./Assets/sound/Z.wav";
 export default class MorsePlayer extends Component {
   constructor(props) {
     super(props);
-
     this.playAudio = this.playAudio.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      words: ""
+      words: "",
+      sounds: {
+        A: new Audio(A),
+        B: new Audio(B),
+        C: new Audio(C),
+        D: new Audio(D),
+        E: new Audio(E),
+        F: new Audio(F),
+        G: new Audio(G),
+        H: new Audio(H),
+        I: new Audio(I),
+        J: new Audio(J),
+        K: new Audio(K),
+        L: new Audio(L),
+        M: new Audio(M),
+        N: new Audio(N),
+        O: new Audio(O),
+        P: new Audio(P),
+        Q: new Audio(Q),
+        R: new Audio(R),
+        S: new Audio(S),
+        T: new Audio(T),
+        U: new Audio(U),
+        V: new Audio(V),
+        W: new Audio(W),
+        X: new Audio(X),
+        Y: new Audio(Y),
+        Z: new Audio(Z)
+      }
     };
-  }
-
-  componentDidMount() {
-    this.ASound = new Audio(A);
-    this.BSound = new Audio(B);
-    this.CSound = new Audio(C);
-    this.DSound = new Audio(D);
-    this.ESound = new Audio(E);
-    this.FSound = new Audio(F);
-    this.GSound = new Audio(G);
-    this.HSound = new Audio(H);
-    this.ISound = new Audio(I);
-    this.JSound = new Audio(J);
-    this.KSound = new Audio(K);
-    this.LSound = new Audio(L);
-    this.MSound = new Audio(M);
-    this.NSound = new Audio(N);
-    this.OSound = new Audio(O);
-    this.PSound = new Audio(P);
-    this.QSound = new Audio(Q);
-    this.RSound = new Audio(R);
-    this.SSound = new Audio(S);
-    this.TSound = new Audio(T);
-    this.USound = new Audio(U);
-    this.VSound = new Audio(V);
-    this.WSound = new Audio(W);
-    this.XSound = new Audio(X);
-    this.YSound = new Audio(Y);
-    this.ZSound = new Audio(Z);
   }
 
   playAudio(evt) {
@@ -77,15 +75,13 @@ export default class MorsePlayer extends Component {
     const interval = 2000; // how much time should the delay between two iterations be (in milliseconds)?
     words.forEach((word, index) => {
       setTimeout(() => {
-        if (word !== " ") {
+        if (word.match(/[a-z]/i)) {
           const upWord = word.toUpperCase();
-          const exp = "this." + upWord + "Sound.play()";
-          eval(exp);
-          console.log(exp);
+          let playThis = this.state.sounds[upWord];
+          playThis.play();
         }
       }, index * interval);
     });
-
     console.log(words);
   }
 
@@ -99,7 +95,7 @@ export default class MorsePlayer extends Component {
       <div>
         <form onSubmit={this.playAudio} className="MorsePlayer">
           <label htmlFor="words" className="MorsePlayer-label">
-            Please enter word(s)
+            Please enter word(s), special characters are not supported.
           </label>
           <input
             type="text"

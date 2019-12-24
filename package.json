@@ -1,5 +1,5 @@
 {
-  "name": "dice",
+  "name": "WordsToMorseCode",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
